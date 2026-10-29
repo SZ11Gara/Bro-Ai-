@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>Bro AI — SZ11</title>
+<style>
+:root{--bg:#0b1020;--panel:#111a2d;--panel2:#172238;--text:#f4f7ff;--muted:#9aa8c2;--line:#26334b;--accent:#38bdf8;--accent2:#6366f1;--user:#203657;--shadow:0 18px 55px #0003}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;background:radial-gradient(ellipse at top right,#17264a 0,transparent 45%),var(--bg);color:var(--text);min-height:100vh}
+button,input,textarea{font:inherit}button{cursor:pointer}.app{display:grid;grid-template-columns:270px 1fr;min-height:100vh;max-width:1500px;margin:auto}
+.sidebar{border-left:1px solid var(--line);padding:18px;background:#0a1020cc;display:flex;flex-direction:column;gap:14px}
+.brand{display:flex;align-items:center;gap:12px;padding:6px 4px 16px}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:22px;font-weight:900;color:#fff;box-shadow:0 8px 25px #38bdf833}.brand h1{font-size:20px;margin:0}.brand small{color:var(--muted)}
+.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:11px 13px;border-radius:12px;transition:.18s}.btn:hover{border-color:var(--accent);transform:translateY(-1px)}.primary{background:linear-gradient(135deg,#0891b2,#4f46e5);border:0;color:#fff;font-weight:700}.side-label{font-size:12px;color:var(--muted);padding:10px 5px 0}.history{display:flex;flex-direction:column;gap:7px}.history button{background:transparent;border:1px solid transparent;color:var(--muted);padding:10px;text-align:right;border-radius:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.history button:hover{background:var(--panel);color:var(--text)}.side-bottom{margin-top:auto;display:grid;gap:9px}.tag{border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--muted);font-size:12px;line-height:1.7}
+main{min-width:0;display:flex;flex-direction:column;min-height:100vh}.topbar{display:flex;align-items:center;justify-content:space-between;padding:17px 24px;border-bottom:1px solid var(--line);background:#0b102080;backdrop-filter:blur(12px);position:sticky;top:0;z-index:3}.topbar strong{font-size:15px}.top-actions{display:flex;gap:8px}.iconbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--text)}
+.chat{width:min(850px,100%);margin:0 auto;flex:1;padding:32px 22px 18px;display:flex;flex-direction:column}.welcome{text-align:center;margin:auto auto 28px;max-width:650px}.orb{width:76px;height:76px;margin:0 auto 18px;border-radius:25px;background:linear-gradient(135deg,#38bdf8,#6366f1);display:grid;place-items:center;font-size:34px;box-shadow:0 12px 40px #3b82f644}.welcome h2{font-size:clamp(26px,4vw,38px);margin:0 0 10px;letter-spacing:-.5px}.gradient{background:linear-gradient(90deg,#67e8f9,#a5b4fc);background-clip:text;-webkit-background-clip:text;color:transparent}.welcome p{color:var(--muted);line-height:1.9;margin:0 auto 24px}.suggestions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;text-align:right}.suggestion{padding:14px;border:1px solid var(--line);background:#121b2dba;border-radius:15px;color:var(--text);text-align:right}.suggestion span{display:block;color:var(--muted);font-size:12px;margin-top:5px}.messages{display:flex;flex-direction:column;gap:18px;padding-bottom:18px}.message{display:flex;gap:10px;align-items:flex-start;max-width:100%}.message.user{flex-direction:row-reverse}.avatar{width:34px;height:34px;flex:0 0 34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,#0e7490,#4f46e5);font-size:13px;font-weight:800}.user .avatar{background:#243b5d}.bubble{max-width:min(680px,calc(100% - 48px));border:1px solid var(--line);background:var(--panel);border-radius:4px 16px 16px 16px;padding:13px 15px;line-height:1.85;white-space:pre-wrap;overflow-wrap:anywhere}.user .bubble{background:var(--user);border-radius:16px 4px 16px 16px}.bubble-actions{display:flex;gap:7px;margin-top:8px}.tiny{font-size:11px;padding:5px 8px;border-radius:8px;color:var(--muted);background:transparent;border:1px solid var(--line)}
+.composer-wrap{position:sticky;bottom:0;padding:12px 22px 20px;background:linear-gradient(transparent,var(--bg) 20%)}.composer{width:min(850px,100%);margin:auto;border:1px solid #35445f;background:var(--panel);border-radius:20px;padding:10px;box-shadow:var(--shadow)}.composer textarea{width:100%;resize:none;min-height:52px;max-height:180px;border:0;outline:0;background:transparent;color:var(--text);padding:10px;line-height:1.6}.compose-bottom{display:flex;align-items:center;justify-content:space-between;padding:5px 4px 2px}.hint{font-size:11px;color:var(--muted)}.send{width:42px;height:42px;border:0;border-radius:13px;background:linear-gradient(135deg,#0891b2,#4f46e5);color:white;font-size:20px}.footer{text-align:center;color:var(--muted);font-size:11px;padding:0 15px 12px}
+.light{--bg:#f3f6fc;--panel:#fff;--panel2:#edf2fa;--text:#172033;--muted:#66748d;--line:#dce4f0;--user:#e1edff;--shadow:0 18px 55px #182b4b12;background:radial-gradient(ellipse at top right,#dcecff 0,transparent 45%),var(--bg)}.light .sidebar{background:#f8faffcc}.light .topbar{background:#f3f6fcbd}.light .suggestion{background:#ffffffc9}
+@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{display:none}.topbar{padding:12px 15px}.chat{padding:25px 14px 12px}.composer-wrap{padding:10px 12px 15px}.suggestions{grid-template-columns:1fr}.welcome{margin-top:30px}.topbar .brand-mobile{display:flex;align-items:center;gap:9px}.brand-mobile .logo{width:34px;height:34px;border-radius:11px;font-size:16px}.topbar .brand-mobile b{font-size:15px}.bubble{max-width:calc(100% - 44px)}}
+@media(min-width:761px){.brand-mobile{display:none}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">B</div><div><h1>Bro AI</h1><small>برو AI · من SZ11</small></div></div>
+  <button class="btn primary" id="newChat">＋ محادثة جديدة</button>
+  <div class="side-label">محادثاتك</div>
+  <div class="history" id="history"><button>أهلاً بك في Bro AI</button></div>
+  <div class="side-bottom">
+    <button class="btn" id="themeSide">☼ تغيير المظهر</button>
+    <div class="tag"><b style="color:var(--text)">Bro AI</b><br>مساعدك الذكي للدراسة، الكتابة، الأفكار والبرمجة.<br><span>نسخة تجريبية من SZ11</span></div>
+  </div>
+</aside>
+<main>
+  <header class="topbar">
+    <div class="brand-mobile"><div class="logo">B</div><b>Bro AI <small style="color:var(--muted);font-weight:400">· SZ11</small></b></div>
+    <strong id="topTitle">مساعدك الذكي</strong>
+    <div class="top-actions"><button class="iconbtn" id="themeBtn" title="تغيير المظهر">☼</button><button class="iconbtn" id="clearBtn" title="محادثة جديدة">＋</button></div>
+  </header>
+  <section class="chat">
+    <div class="welcome" id="welcome">
+      <div class="orb">✦</div>
+      <h2>مرحباً بك في <span class="gradient">Bro AI</span></h2>
+      <p>أنا برو، مساعدك الذكي من SZ11. أستطيع مساعدتك في الدراسة، الكتابة، توليد الأفكار، وفهم البرمجة. بماذا نبدأ اليوم؟</p>
+      <div class="suggestions">
+        <button class="suggestion" data-prompt="اشرح لي درساً دراسياً بطريقة سهلة">📚 ساعدني في الدراسة<span>شرح مبسط وأمثلة</span></button>
+        <button class="suggestion" data-prompt="اقترح لي أفكاراً لمشروع صغير أبدأه من الهاتف">💡 اقترح أفكاراً<span>أفكار مشاريع ومحتوى</span></button>
+        <button class="suggestion" data-prompt="ساعدني في كتابة قصة مشوقة باللغة العربية">✍️ اكتب معي<span>قصص ونصوص ورسائل</span></button>
+        <button class="suggestion" data-prompt="علمني أساسيات برمجة موقع من الصفر">💻 تعلم البرمجة<span>خطوات واضحة للمبتدئين</span></button>
+      </div>
+    </div>
+    <div class="messages" id="messages" aria-live="polite"></div>
+  </section>
+  <div class="composer-wrap">
+    <form class="composer" id="chatForm">
+      <textarea id="prompt" placeholder="اكتب رسالتك إلى Bro AI..." rows="2" aria-label="رسالتك"></textarea>
+      <div class="compose-bottom"><span class="hint">Enter للإرسال · Shift + Enter لسطر جديد</span><button class="send" type="submit" aria-label="إرسال">➤</button></div>
+    </form>
+  </div>
+  <div class="footer">Bro AI by SZ11 · نموذج واجهة أولي — الردود الحالية تجريبية وليست متصلة بذكاء اصطناعي حقيقي.</div>
+</main>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const messagesEl=$('#messages'), welcome=$('#welcome'), promptEl=$('#prompt');
+let chats=[], current=[];
+const savedTheme=localStorage.getItem('broai-theme');
+if(savedTheme==='light') document.body.classList.add('light');
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function renderMessage(role,text){
+ const item=document.createElement('div');item.className='message '+(role==='user'?'user':'assistant');
+ item.innerHTML=`<div class="avatar">${role==='user'?'أنت':'B'}</div><div><div class="bubble">${escapeHtml(text)}</div>${role==='assistant'?'<div class="bubble-actions"><button class="tiny copy">نسخ الرد</button></div>':''}</div>`;
+ const copy=item.querySelector('.copy');if(copy)copy.addEventListener('click',()=>navigator.clipboard?.writeText(text).then(()=>{copy.textContent='تم النسخ ✓'}).catch(()=>{copy.textContent='تعذر النسخ'}));
+ messagesEl.appendChild(item);return item;
+}
+function sampleReply(text){
+ const t=text.toLowerCase();
+ if(/سلام|مرحبا|السلام عليكم|اهلا|أهلا/.test(t)) return 'وعليكم السلام! 👋 مرحباً بك في Bro AI من SZ11. كيف نقدر نعاونك اليوم؟';
+ if(/درس|اشرح|رياضيات|فيزياء|svt|فلسف|تاريخ/.test(t)) return 'أكيد! 📚 أرسل لي اسم الدرس أو صورة واضحة منه، وسأساعدك على فهمه خطوة بخطوة وبأسلوب بسيط.\\n\\nملاحظة: أنا الآن نسخة تجريبية؛ للحصول على إجابات ذكية فعلية يجب ربط التطبيق بخدمة نموذج ذكاء اصطناعي.';
+ if(/فكر|مشروع|ربح|محتوى|انستغرام|تيك/.test(t)) return 'خلّينا نبدأ بخطة واقعية: حدّد الجمهور الذي تريد مساعدته، اختر مشكلة صغيرة، ثم أنشئ نموذجاً بسيطاً واختبره مع بعض المستخدمين. لا توجد أرباح مضمونة.\\n\\nهذه إجابة تجريبية من الواجهة، وليست مولّدة من نموذج ذكاء اصطناعي حقيقي.';
+ if(/برمج|كود|موقع|تطبيق|html|javascript/.test(t)) return 'أقدر أساعدك في بناء المشروع خطوة بخطوة. حدّد ما الذي تريد أن يفعله التطبيق، وسنقسمه إلى واجهة، وظائف، ثم ربط بالخدمات.\\n\\nتنبيه: هذه النسخة لا تنفّذ كوداً ولا تتصل بمحرك ذكاء اصطناعي حتى الآن.';
+ if(/قص|رواي|اكتب|كتابة/.test(t)) return 'جميل! ✍️ أعطني الموضوع والنوع والطول الذي تريده، وسنبدأ بصياغة نص مناسب.\\n\\nملاحظة: هذا رد تجريبي. بعد ربط Bro AI بنموذج فعلي سيتمكن من توليد ردود مخصصة.';
+ return 'وصلتني رسالتك: «'+text+'»\\n\\nأنا حالياً واجهة أولية لـ Bro AI. المحادثة والإرسال يعملان داخل الصفحة، لكن الإجابات هنا تجريبية. الخطوة التالية هي ربط التطبيق بواجهة API لنموذج ذكاء اصطناعي، مع حماية مفتاح API على خادم آمن.';
+}
+function addMessage(role,text){current.push({role,text});renderMessage(role,text);welcome.style.display='none';}
+function updateHistory(){const el=$('#history');el.innerHTML='';if(!chats.length){el.innerHTML='<button>أهلاً بك في Bro AI</button>';return;}chats.slice().reverse().forEach((c,i)=>{const b=document.createElement('button');b.textContent=c.title||'محادثة جديدة';b.onclick=()=>{current=c.messages.slice();messagesEl.innerHTML='';welcome.style.display=current.length?'none':'';current.forEach(m=>renderMessage(m.role,m.text));$('#topTitle').textContent=c.title||'مساعدك الذكي';};el.appendChild(b);});}
+function saveChat(){if(current.length){const title=current.find(m=>m.role==='user')?.text.slice(0,30)||'محادثة جديدة';const existing=chats.findIndex(c=>c.messages===current);if(existing>=0)chats[existing]={title,messages:current};else chats.push({title,messages:current});updateHistory();}}
+function newChat(){saveChat();current=[];messagesEl.innerHTML='';welcome.style.display='';$('#topTitle').textContent='مساعدك الذكي';promptEl.value='';promptEl.focus();}
+function send(text){text=text.trim();if(!text)return;saveChat();addMessage('user',text);promptEl.value='';const waiting=renderMessage('assistant','يفكر برو...');welcome.style.display='none';setTimeout(()=>{waiting.remove();addMessage('assistant',sampleReply(text));saveChat();},450);}
+$('#chatForm').addEventListener('submit',e=>{e.preventDefault();send(promptEl.value);});
+promptEl.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#chatForm').requestSubmit();}});
+document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>send(b.dataset.prompt)));
+$('#newChat').onclick=newChat;$('#clearBtn').onclick=newChat;
+function toggleTheme(){document.body.classList.toggle('light');localStorage.setItem('broai-theme',document.body.classList.contains('light')?'light':'dark');}
+$('#themeBtn').onclick=toggleTheme;$('#themeSide').onclick=toggleTheme;
+</script>
+</body>
+</html>
